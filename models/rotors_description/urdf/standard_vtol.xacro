@@ -52,7 +52,7 @@
   <xacro:include filename="$(arg rotors_description_dir)/urdf/fixedwing_base.xacro" />
 
   <!-- Instantiate multirotor_base_macro once -->
-  <xacro:standardvtol_base_macro
+  <xacro:fixedwing_base_macro
     robot_namespace="${namespace}"
     mesh_file="model://standard_vtol/meshes/x8_wing.dae"
     mesh_scale="0.001 0.001 0.001"
@@ -174,24 +174,39 @@
   <xacro:property name="left_elevon_mesh_origin">
     <origin xyz="-0.105 -0.646 -0.032" rpy="1.5707963268 0 3.1415926536"/>
   </xacro:property>
+  <xacro:property name="left_elevon_joint_origin">
+    <origin xyz="0.0 0.3 0.0"/>
+  </xacro:property>
+  <xacro:property name="right_elevon_mesh_origin">
+    <origin xyz="0.28 -0.382 -0.032" rpy="1.5707963268 0 3.1415926536"/>
+  </xacro:property>
+  <xacro:property name="right_elevon_joint_origin">
+    <origin xyz="0.0 0.3 0.0"/>
+  </xacro:property>
 
-    <!-- Left Elevon -->
+  <!-- Left Elevon -->
   <xacro:control_surface
     robot_namespace="${namespace}"
     link_name="left_elevon"
     parent="base_link"
     mesh_file="model://standard_vtol/meshes/x8_elevon_left.dae"
     mesh_scale="0.001 0.001 0.001"
-    area="0.5"
-    color="Blue">
+    color="Blue"
+    area="0.12"
+    control_joint_rad_to_cl="-0.5"
+    a0="0.05984281113"
+    cpx="-0.05"
+    cpy="0.3"
+    cpz="0.05"
+    upx="0"
+    upy="0"
+    upz="1"
+    joint_limit="0.53">
     <origin xyz="0.0 0.65 0.0" rpy="0 0 0" />
     <axis xyz="0 1 0" />
-    <xacro:insert_block name="left_elevon_mesh_origin" />
+    <xacro:insert_block name="left_aileron_joint_origin" />
+    <xacro:insert_block name="left_aileron_mesh_origin" />
   </xacro:control_surface> 
-
-  <xacro:property name="right_elevon_mesh_origin">
-    <origin xyz="0.28 -0.382 -0.032" rpy="1.5707963268 0 3.1415926536"/>
-  </xacro:property>
 
     <!-- Right Elevon -->
   <xacro:control_surface
@@ -201,12 +216,21 @@
     mesh_file="model://standard_vtol/meshes/x8_elevon_right.dae"
     mesh_scale="0.001 0.001 0.001"
     area="0.5"
-    color="Blue">
+    color="Blue"
+    area="0.12"
+    control_joint_rad_to_cl="-0.5"
+    a0="0.05984281113"
+    cpx="-0.05"
+    cpy="0.3"
+    cpz="0.05"
+    upx="0"
+    upy="0"
+    upz="1">
     <origin xyz="0.0 -0.65 0.0" rpy="0 0 0" />
     <axis xyz="0 1 0" />
+    <xacro:insert_block name="right_elevon_joint_origin" />
     <xacro:insert_block name="right_elevon_mesh_origin" />
   </xacro:control_surface> 
-
 
   <xacro:control_surface
     robot_namespace="${namespace}"
@@ -215,7 +239,16 @@
     mesh_file="model://standard_vtol/meshes/x8_elevon_right.dae"
     mesh_scale="0.001 0.001 0.001"
     area="0.5"
-    color="Blue">
+    color="Blue"
+    area="0.12"
+    control_joint_rad_to_cl="-0.5"
+    a0="0.05984281113"
+    cpx="-0.05"
+    cpy="0.3"
+    cpz="0.05"
+    upx="0"
+    upy="0"
+    upz="1">
     <origin xyz="-1.0 0.0 0.0" rpy="0 0 0" />
     <axis xyz="0 1 0" />
     <xacro:insert_block name="right_elevon_mesh_origin" />
