@@ -1,7 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.5">
   <world name="default">
-  	
     <!-- A global light source -->
     <include>
       <uri>model://sun</uri>
@@ -15,7 +14,7 @@
       <uri>model://asphalt_plane</uri>
     </include>
     <include>
-      <uri>model://iris_hitl</uri>
+      <uri>model://iris</uri>
       <pose>1.01 0.98 0.83 0 0 1.14</pose>
     </include>
     <physics name='default_physics' default='0' type='ode'>
